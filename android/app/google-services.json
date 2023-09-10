@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "747372579843",
+    "firebase_url": "https://testes-pra-cacete-default-rtdb.firebaseio.com",
+    "project_id": "testes-pra-cacete",
+    "storage_bucket": "testes-pra-cacete.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747372579843:android:3a69a9a1f65c29bb3c1236",
+        "android_client_info": {
+          "package_name": "com.example.loko_codes_register"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0iJsMBH2RAt_KcDdINN_uBGQuH2YCIMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747372579843-7de8uhneuut41v0vfnck3euch50mpql7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lokostQr.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747372579843:android:6b467f4ece4d04233c1236",
+        "android_client_info": {
+          "package_name": "com.example.loko_qr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0iJsMBH2RAt_KcDdINN_uBGQuH2YCIMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747372579843-7de8uhneuut41v0vfnck3euch50mpql7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lokostQr.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747372579843:android:0f889da5d7652ff53c1236",
+        "android_client_info": {
+          "package_name": "com.example.lokost_qr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0iJsMBH2RAt_KcDdINN_uBGQuH2YCIMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747372579843-7de8uhneuut41v0vfnck3euch50mpql7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lokostQr.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747372579843:android:2606cab4de86e5ee3c1236",
+        "android_client_info": {
+          "package_name": "com.exemple.firebaseteste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0iJsMBH2RAt_KcDdINN_uBGQuH2YCIMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747372579843-btielti0g98m67dq0pmpv1c2b32aq76n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747372579843-7de8uhneuut41v0vfnck3euch50mpql7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lokostQr.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
