@@ -25,6 +25,7 @@ class _QRScannerState extends State<QRScanner> {
     this.controller = controller;
     controller.scannedDataStream.listen(
       (scan) {
+        controller.dispose();
         Navigator.of(context).pushReplacementNamed(
           AppRoutes.result,
           arguments: {
@@ -32,7 +33,6 @@ class _QRScannerState extends State<QRScanner> {
             "codes": _codes,
           },
         );
-        controller.dispose();
       },
     );
   }
@@ -68,21 +68,20 @@ class _QRScannerState extends State<QRScanner> {
           centerTitle: true,
         ),
         body: QRView(
-          key: qr,
-          onQRViewCreated: _onQRCreated,
-          overlay: QrScannerOverlayShape(
-            overlayColor: Colors.black45,
-            borderColor: Colors.red,
-            borderRadius: 30,
-            borderWidth: 4,
-          )
-        ),
+            key: qr,
+            onQRViewCreated: _onQRCreated,
+            overlay: QrScannerOverlayShape(
+              overlayColor: Colors.black45,
+              borderColor: Colors.red,
+              borderRadius: 30,
+              borderWidth: 4,
+            )),
       );
 
-      @override
-      void dispose() {
-        _codeGetter.cancel();
-        controller!.dispose();
-        super.dispose();
-      }
+  @override
+  void dispose() {
+    _codeGetter.cancel();
+    controller!.dispose();
+    super.dispose();
+  }
 }

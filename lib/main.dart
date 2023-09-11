@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.splash: (ctx) => const SplashScreen(),
         AppRoutes.home: (ctx) => const HomeScreen(),
         AppRoutes.scanner: (ctx) => const QRScanner(),
-        AppRoutes.result: (ctx) => const Result()
+        AppRoutes.result: (ctx) => const ResultScreen()
       }
     );
   }

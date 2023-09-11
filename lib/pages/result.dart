@@ -3,52 +3,78 @@ import 'package:flutter/material.dart';
 import 'package:loko_qr/components/common_result.dart';
 import 'package:loko_qr/components/special_result.dart';
 
-class Result extends StatefulWidget {
-  const Result({super.key});
+class ResultScreen extends StatefulWidget {
+  const ResultScreen({super.key});
 
   @override
-  State<Result> createState() => _ResultState();
+  State<ResultScreen> createState() => _ResultScreenState();
 }
 
-class _ResultState extends State<Result> {
+class _ResultScreenState extends State<ResultScreen> {
   final DatabaseReference _ref = FirebaseDatabase.instance.ref();
   List<String> _codes = [];
-  String _content = "";
-  String title = "Resultado";
-  Map<String, dynamic> data = {};
+  String _title = "Resultado";
   late String result;
+  late Color background;
 
-  bool get _iscode => _codes.contains(result);
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  _getTitle(resutl) async {
-    if (_iscode) {
-      setState(
-        () {
-          _ref
-              .child(result)
-              .get()
-              .then((value) => data = value.value as Map<String, dynamic>);
-          title = data["title"];
-          _content = data["content"];
-        },
-      );
+  // Variables for the special code
+  String _content = "";
+  late Map<dynamic, dynamic> _data;
+  bool _iscode = false;
+  bool readed = false;
+
+  bool get checkCode => _codes.contains(result);
+
+  _getContent(result) async {
+    await _ref.child(result).once().then((value) {
+      _data = value.snapshot.value as Map<dynamic, dynamic>;
+      _content = _data['content'];
+    });
+    if (!readed) {
+      setState(() {
+        _title = _data["title"].toString();
+        background = Colors.purple;
+        _iscode = true;
+      });
+      readed = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final data =
+    Map<String, dynamic> data =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     _codes = data["codes"];
-    result = data['result'];
-    _getTitle(result);
+    background = Theme.of(context).colorScheme.background;
+    result = data["result"];
+    if (checkCode) {
+      _getContent(result);
+    }
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(_title),
+        centerTitle: true,
       ),
-      body: _iscode
-          ? SpecialResult(title: title, content: _content)
-          : CommonResult(result: result),
+      body: Container(
+        decoration: _iscode
+            ? const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                    Colors.blue,
+                    Colors.purple,
+                  ]))
+            : BoxDecoration(color: background),
+        child: _iscode
+            ? SpecialResult(title: _title, content: _content)
+            : CommonResult(result: result),
+      ),
     );
   }
 }

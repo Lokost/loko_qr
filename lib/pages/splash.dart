@@ -13,37 +13,58 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   _showHome() {
-    Navigator.pushReplacementNamed(context, AppRoutes.home);
+    Navigator.of(context).pushReplacementNamed(AppRoutes.home);
   }
 
-  _goHome() async {
-    await Future.delayed(const Duration(seconds: 2));
-    _showHome();
-    Firebase.initializeApp(
+  _gohome() async {
+    await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    super.initState();
+    await Future.delayed(const Duration(seconds: 2));
+    _showHome();
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.red,
-        body: Center(
+  Widget build(BuildContext context) {
+    _gohome();
+    return Scaffold(
+      backgroundColor: Colors.red,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              "assets/logo.svg",
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+              height: 170,
+              width: 170,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text("Loko QR", style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 30),),
+            const SizedBox(
+              height: 20,
+            ),
+            const CircularProgressIndicator(),
+          ],
+        ),
+      ),
+      bottomSheet: SizedBox(
+        height: 50,
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                "assets/logo.svg",
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
-                  BlendMode.srcIn,
-                ),
-                height: 170,
-                width: 170,
-              ),
-              const Text("Loko QR"),
-            ],
+              Text("Criado por ${AppInfo.creator}"),
+              Text("Versão ${AppInfo.version}")
+            ]
           ),
-        ),
-      );
+        )
+      ),
+    );
+  }
 }
