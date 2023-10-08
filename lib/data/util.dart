@@ -10,7 +10,7 @@ class AppRoutes {
 
 class AppInfo {
   static String creator = "Gabriel Gomes";
-  static String version = "v0.1.1";
+  static String version = "v0.2.0";
 }
 
 class LokoUtil {
