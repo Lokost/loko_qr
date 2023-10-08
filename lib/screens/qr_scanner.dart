@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:loko_qr/util/data.dart';
+import 'package:loko_qr/data/util.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRScanner extends StatefulWidget {
@@ -23,25 +23,20 @@ class _QRScannerState extends State<QRScanner> {
 
   _onQRCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen(
-      (scan) {
-        controller.dispose();
-        Navigator.of(context).pushReplacementNamed(
-          AppRoutes.result,
-          arguments: {
-            "result": scan.code!,
-            "codes": _codes,
-          },
-        );
-      },
-    );
-  }
+    controller.scannedDataStream.listen((scan) async {
+      controller.dispose();
+      bool iscode = _codes.contains(scan.code!);
+      if (iscode) {
+        print("Is Special");
+        Navigator.of(context).pushReplacementNamed(AppRoutes.specialResult,
+              arguments: await _ref.child(scan.code!).get().then((value) => value.value) as Map<dynamic, dynamic>);}
+         else { Navigator.of(context)
+              .pushReplacementNamed(AppRoutes.result, arguments: scan.code!);}});
+    }
 
-  void _getCodes() {
+  _getCodes() {
     _codeGetter = _ref.onChildAdded.listen(
-      (event) => _codes.add(
-        event.snapshot.key.toString(),
-      ),
+      (event) => _codes.add(event.snapshot.key.toString()),
     );
   }
 
@@ -53,30 +48,33 @@ class _QRScannerState extends State<QRScanner> {
 
   @override
   void reassemble() {
-    super.reassemble();
     if (Platform.isAndroid) {
       controller!.pauseCamera();
     } else if (Platform.isIOS) {
       controller!.resumeCamera();
     }
+    super.reassemble();
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text("Escanear código"),
-          centerTitle: true,
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Escanear código"),
+        centerTitle: true,
+      ),
+      body: QRView(
+        key: qr,
+        onQRViewCreated: _onQRCreated,
+        overlay: QrScannerOverlayShape(
+          overlayColor: Colors.black45,
+          borderColor: Colors.red,
+          borderRadius: 30,
+          borderWidth: 4,
         ),
-        body: QRView(
-            key: qr,
-            onQRViewCreated: _onQRCreated,
-            overlay: QrScannerOverlayShape(
-              overlayColor: Colors.black45,
-              borderColor: Colors.red,
-              borderRadius: 30,
-              borderWidth: 4,
-            )),
-      );
+      ),
+    );
+  }
 
   @override
   void dispose() {
